@@ -1,0 +1,397 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Temario Fullstack para entrevistas técnicas</title>
+<meta name="description" content="Temario fullstack (JavaScript, React, Node, Java/Spring, bases de datos, system design) para entrevistas técnicas en empresas de Argentina, con checklist y plan de 4 semanas.">
+<style>
+:root{--bg:#fafaf7;--fg:#1c1c1a;--mut:#6b6b64;--line:#dedcd3;--card:#fff;--acc:#2354e6;--accbg:#e8eefc;--ok:#1a7f4b}
+@media (prefers-color-scheme:dark){:root{--bg:#141413;--fg:#ececE6;--mut:#9a9a92;--line:#2e2e2b;--card:#1c1c1a;--acc:#7da2ff;--accbg:#1d2740;--ok:#4cc58a}}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--fg);font:16px/1.6 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+.wrap{max-width:920px;margin:0 auto;padding:0 16px 80px}
+header{padding:40px 0 16px}
+h1{font-size:clamp(26px,5vw,38px);line-height:1.15;margin:0 0 8px}
+header p{color:var(--mut);margin:0;max-width:62ch}
+nav{position:sticky;top:0;background:var(--bg);border-bottom:1px solid var(--line);padding:10px 0;z-index:5;overflow-x:auto;white-space:nowrap}
+nav a{display:inline-block;margin-right:14px;color:var(--mut);text-decoration:none;font-size:14px}
+nav a:hover{color:var(--acc)}
+.prog{position:sticky;top:41px;background:var(--bg);padding:8px 0;z-index:4;font-size:13px;color:var(--mut);display:flex;gap:10px;align-items:center}
+.bar{flex:1;height:6px;background:var(--line);border-radius:4px;overflow:hidden}
+.bar i{display:block;height:100%;width:0;background:var(--ok);transition:width .2s}
+section{padding-top:36px}
+h2{font-size:24px;margin:0 0 6px}
+h3{font-size:17px;margin:22px 0 8px}
+.lead{color:var(--mut);margin:0 0 12px}
+ul.chk{list-style:none;padding:0;margin:8px 0}
+ul.chk li{margin:0}
+ul.chk label{display:flex;gap:10px;padding:5px 0;cursor:pointer}
+ul.chk input{margin-top:6px;accent-color:var(--ok)}
+ul.chk input:checked+span{color:var(--mut);text-decoration:line-through}
+details{background:var(--card);border:1px solid var(--line);border-radius:8px;margin:8px 0;padding:0 14px}
+summary{cursor:pointer;padding:10px 0;font-weight:600}
+details p,details ul{margin:0 0 12px;color:var(--fg)}
+table{border-collapse:collapse;width:100%;font-size:14.5px;margin:10px 0;display:block;overflow-x:auto}
+th,td{border:1px solid var(--line);padding:8px 10px;text-align:left;vertical-align:top}
+th{background:var(--accbg)}
+code{background:var(--accbg);padding:1px 5px;border-radius:4px;font-size:.92em}
+a{color:var(--acc)}
+.note{background:var(--accbg);border-radius:8px;padding:10px 14px;margin:12px 0;font-size:15px}
+footer{margin-top:48px;color:var(--mut);font-size:13px;border-top:1px solid var(--line);padding-top:16px}
+button{font:inherit;background:none;border:1px solid var(--line);color:var(--mut);border-radius:6px;padding:2px 10px;cursor:pointer}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header>
+<h1>Temario Fullstack para entrevistas técnicas</h1>
+<p>Qué estudiar para entrevistas de desarrollo fullstack (frontend con backend) en empresas de Argentina: live coding, charla técnica, system design y charla de seniority. Tildá lo que ya dominás; el avance queda guardado en tu navegador.</p>
+</header>
+<nav>
+<a href="#empresas">Empresas</a><a href="#js">JS/TS</a><a href="#react">React/Next</a><a href="#live">Live coding</a><a href="#node">Node</a><a href="#java">Java/Spring</a><a href="#db">Bases de datos</a><a href="#api">APIs y seguridad</a><a href="#ops">Testing y CI/CD</a><a href="#design">System design</a><a href="#soft">Charla</a><a href="#plan">Plan 4 semanas</a><a href="#fuentes">Fuentes</a>
+</nav>
+<div class="prog"><span id="ptxt">0%</span><div class="bar"><i id="pbar"></i></div><button id="reset" type="button">Reiniciar</button></div>
+
+<section id="empresas">
+<h2>1. Qué esperar en cada empresa</h2>
+<p class="lead">Los procesos suelen tener 3 o 4 etapas: RR. HH., técnica, a veces prueba práctica, y cierre con el líder o el cliente. La información sale de reseñas anónimas de candidatos (no oficiales), así que confirmá el formato con el recruiter.</p>
+<table>
+<tr><th>Empresa</th><th>Etapas reportadas</th><th>Temas reportados</th><th>Confianza</th></tr>
+<tr><td><a href="https://www.techprep.app/blog/mercadolibre-interview-process">Mercado Libre</a></td><td>Prueba en casa (página en React con scroll infinito y filtros, que se defiende después) o ejercicios de código; charla con líder técnico</td><td>JavaScript y comportamientos raros del lenguaje, React (estado, HOC), CSS, REST, Promises, DOM virtual, sistemas y base de datos</td><td>Media</td></tr>
+<tr><td><a href="https://www.glassdoor.ca/Interview/Globant-Interview-E150678-RVW49335366.htm">Globant</a></td><td>RR. HH., a veces entrevista grabada evaluada por IA, técnica, reunión con el cliente; parte en inglés</td><td>Closures, hoisting, event loop, hooks, patrones, performance, accesibilidad, Flexbox, Git; test de JS o componente de formulario en React</td><td>Media</td></tr>
+<tr><td><a href="https://www.glassdoor.com/Interview/Naranja-X-Interview-E3079608-RVW82628167.htm">Naranja X</a></td><td>RR. HH., técnica con tech lead, live coding grabado en pantalla (reporte de enero 2026)</td><td>Sin temas detallados</td><td>Baja</td></tr>
+<tr><td><a href="https://www.glassdoor.ca/Interview/Ual%C3%A1-Interview-E2801509-RVW58758894.htm">Ualá</a></td><td>RR. HH., prueba en casa (API con buenas prácticas, arquitectura, testing, Docker, performance de endpoints), técnica, entrevista con el gerente</td><td>Orientado a backend en ese reporte</td><td>Baja</td></tr>
+<tr><td><a href="https://www.glassdoor.ie/Interview/Santander-Interview-E828048-RVW61498189.htm">Santander</a></td><td>Entrevista inicial, prueba técnica de React, entrevista con tech lead, a veces code review y entrevista cultural</td><td>Hooks, event loop, memoización, buenas prácticas, code review en vivo</td><td>Baja a media</td></tr>
+<tr><td>Brubank, Despegar, Auth0, Banco Galicia</td><td colspan="3">No encontré reportes de candidatos. Prepará el mismo núcleo y preguntá el formato al recruiter.</td></tr>
+</table>
+<div class="note">Denominador común: <strong>JavaScript puro (event loop, closures, Promises), React (hooks, estado, performance), REST y bases de datos</strong>. Dos empresas usan prueba en casa que luego se defiende, así que preparate para explicar tus decisiones. Para perfiles Senior es razonable esperar también una ronda de diseño (probable, no confirmada en las reseñas locales).</div>
+</section>
+
+<section id="js">
+<h2>2. JavaScript y TypeScript</h2>
+<p class="lead">El tema más repetido. Para nivel Senior tenés que predecir la salida de un código y explicar el porqué.</p>
+<h3>Temario</h3>
+<ul class="chk">
+<li><label><input type="checkbox"><span>Event loop: call stack, Web APIs, macrotareas (<code>setTimeout</code>) y microtareas (<code>Promise.then</code>, <code>queueMicrotask</code>)</span></label></li>
+<li><label><input type="checkbox"><span>Closures: bucle con <code>var</code> vs <code>let</code> dentro de <code>setTimeout</code>, memoización, datos privados</span></label></li>
+<li><label><input type="checkbox"><span>Scope, hoisting y TDZ; <code>var</code>, <code>let</code>, <code>const</code></span></label></li>
+<li><label><input type="checkbox"><span><code>this</code>: binding implícito, explícito, <code>new</code>, arrow functions; <code>call</code>, <code>apply</code>, <code>bind</code></span></label></li>
+<li><label><input type="checkbox"><span>Prototipos y clases; <code>Object.create</code></span></label></li>
+<li><label><input type="checkbox"><span>Promises y async/await: <code>all</code>, <code>allSettled</code>, <code>race</code>, <code>any</code>; errores; <code>await</code> dentro de <code>forEach</code></span></label></li>
+<li><label><input type="checkbox"><span>Coerción e igualdad: <code>==</code> vs <code>===</code>, <code>typeof null</code>, <code>NaN</code>, <code>[] + {}</code></span></label></li>
+<li><label><input type="checkbox"><span>Copias: shallow vs deep, <code>structuredClone</code>, inmutabilidad</span></label></li>
+<li><label><input type="checkbox"><span>Módulos ESM vs CommonJS, import dinámico, tree shaking</span></label></li>
+<li><label><input type="checkbox"><span><code>Map</code>, <code>Set</code>, <code>WeakMap</code>, generadores, iteradores, <code>??</code>, optional chaining</span></label></li>
+<li><label><input type="checkbox"><span>DOM: delegación de eventos, bubbling vs capturing, <code>requestAnimationFrame</code>, storage vs cookies, CORS</span></label></li>
+<li><label><input type="checkbox"><span>TypeScript: <code>unknown</code>/<code>any</code>/<code>never</code>, <code>interface</code> vs <code>type</code>, generics, utility types, narrowing, uniones discriminadas, tipos condicionales y mapped types, <code>strict</code></span></label></li>
+<li><label><input type="checkbox"><span>Validación en runtime (Zod) porque los tipos no existen al ejecutar</span></label></li>
+</ul>
+<h3>Preguntas típicas</h3>
+<details><summary>¿Qué imprime: log(1); setTimeout(log 2, 0); Promise.then(log 3); log(4)?</summary><p>1, 4, 3, 2. Primero lo síncrono, luego las microtareas y al final las macrotareas.</p></details>
+<details><summary>¿Diferencia entre var, let y const?</summary><p>Scope de función vs de bloque, hoisting con y sin TDZ. <code>const</code> no vuelve inmutable al objeto, solo la referencia.</p></details>
+<details><summary>¿Qué es un closure y para qué sirve?</summary><p>Una función que recuerda el scope donde se creó. Sirve para estado privado, factories, debounce y memoización.</p></details>
+<details><summary>¿Cómo funciona this en una arrow function?</summary><p>No tiene this propio; lo toma del scope léxico donde se definió.</p></details>
+<details><summary>¿Promise.all vs Promise.allSettled?</summary><p><code>all</code> falla rápido ante el primer rechazo; <code>allSettled</code> espera a todas y devuelve el estado de cada una.</p></details>
+<details><summary>¿Cómo evitás una fuga de memoria en el front?</summary><p>Limpiar listeners, timers y suscripciones; evitar referencias retenidas en closures y cachés sin límite.</p></details>
+<details><summary>¿unknown vs any?</summary><p><code>any</code> apaga el chequeo de tipos; <code>unknown</code> obliga a verificar el tipo antes de usar el valor.</p></details>
+<p><strong>Ejercicio:</strong> escribí a mano <code>DeepPartial&lt;T&gt;</code>, un <code>Pick</code> propio y un <code>groupBy&lt;T, K extends keyof T&gt;</code>.</p>
+</section>
+
+<section id="react">
+<h2>3. React y Next.js</h2>
+<p class="lead">Se espera profundidad: por qué se re-renderiza algo y cómo lo optimizás.</p>
+<h3>Temario</h3>
+<ul class="chk">
+<li><label><input type="checkbox"><span>Render y reconciliación: virtual DOM, diffing, <code>key</code> y problema del índice</span></label></li>
+<li><label><input type="checkbox"><span>Cuándo se re-renderiza: estado, props, padre, contexto; batching; StrictMode y doble render</span></label></li>
+<li><label><input type="checkbox"><span>Hooks: <code>useState</code> funcional, <code>useEffect</code> (dependencias, cleanup, carreras), <code>useRef</code>, <code>useLayoutEffect</code>; reglas de los hooks</span></label></li>
+<li><label><input type="checkbox"><span>Performance: <code>memo</code>, <code>useMemo</code>, <code>useCallback</code> y cuándo no sirven; <code>lazy</code>/<code>Suspense</code>; virtualización; <code>useTransition</code></span></label></li>
+<li><label><input type="checkbox"><span>Estado: local vs global, Context y sus re-renders, Redux Toolkit, Zustand, React Query para estado de servidor</span></label></li>
+<li><label><input type="checkbox"><span>Custom hooks (<code>useDebounce</code>, <code>useFetch</code>) y patrones: composición, render props, HOC, compound components, controlados vs no controlados</span></label></li>
+<li><label><input type="checkbox"><span>Formularios y validación (React Hook Form, Zod), error boundaries, accesibilidad (semántica, ARIA, foco)</span></label></li>
+<li><label><input type="checkbox"><span>Next.js: SSR, SSG, ISR, CSR; App Router; Server vs Client Components; Server Actions; caché y revalidación; streaming</span></label></li>
+<li><label><input type="checkbox"><span>Next.js: <code>next/image</code>, <code>next/font</code>, middleware, route handlers, variables de entorno, <code>generateMetadata</code>, errores de hidratación, Core Web Vitals (LCP, CLS, INP)</span></label></li>
+</ul>
+<h3>Preguntas típicas</h3>
+<details><summary>¿Cómo funciona el virtual DOM y por qué importa la key?</summary><p>React compara dos árboles y aplica solo la diferencia. La <code>key</code> estable identifica elementos entre renders; con índices se pierde estado al reordenar.</p></details>
+<details><summary>¿useMemo vs useCallback?</summary><p><code>useMemo</code> memoiza un valor, <code>useCallback</code> una función. Solo ayudan si el hijo está en <code>memo</code> o el cálculo es costoso.</p></details>
+<details><summary>¿Por qué un useEffect corre en loop?</summary><p>Dependencias que cambian en cada render (objetos o funciones inline) o un <code>setState</code> dentro del efecto sin condición.</p></details>
+<details><summary>¿Qué problema tiene Context para estado que cambia seguido?</summary><p>Todos los consumidores se re-renderizan. Se mitiga dividiendo contextos o usando un store con selectores.</p></details>
+<details><summary>¿Server Component vs Client Component?</summary><p>El server component corre solo en el servidor, no manda su JS al cliente y no puede usar estado ni efectos. El client component hidrata e interactúa.</p></details>
+<details><summary>¿SSR vs SSG vs ISR?</summary><p>SSR renderiza en cada request, SSG en build, ISR en build con revalidación periódica.</p></details>
+<details><summary>¿Cómo mejorás una app React lenta?</summary><p>Medir primero (Profiler, Lighthouse); luego dividir bundles, virtualizar listas, evitar re-renders y mover lógica al servidor.</p></details>
+<details><summary>¿Estado de servidor vs estado de cliente?</summary><p>El de servidor es caché de datos remotos (React Query, SWR) con invalidación; el de cliente es UI (modales, filtros). Mezclarlos en Redux complica el código.</p></details>
+</section>
+
+<section id="live">
+<h2>4. Live coding y algoritmos</h2>
+<p class="lead">Las reseñas describen un live coding cercano al día a día (JavaScript con salidas inesperadas, transformar datos, armar un componente o formulario) más que LeetCode puro. Igual conviene practicar algoritmos básicos.</p>
+<h3>Método</h3>
+<ol>
+<li>Repetí el enunciado y preguntá por casos borde (vacío, duplicados, null, tamaños grandes).</li>
+<li>Explicá el enfoque en voz alta antes de escribir y mencioná la complejidad esperada.</li>
+<li>Resolvé primero una versión simple que funcione; después optimizá.</li>
+<li>Probá con 2 o 3 ejemplos, incluido un caso borde, sin esperar a que te lo pidan.</li>
+<li>Si te trabás, decí qué estás pensando.</li>
+</ol>
+<h3>Temario</h3>
+<ul class="chk">
+<li><label><input type="checkbox"><span>Arrays y strings: <code>map</code>, <code>filter</code>, <code>reduce</code>, doble puntero, ventana deslizante</span></label></li>
+<li><label><input type="checkbox"><span>Hash maps y sets para contar, agrupar y buscar en O(1)</span></label></li>
+<li><label><input type="checkbox"><span>Pilas y colas (paréntesis balanceados, cola con dos pilas)</span></label></li>
+<li><label><input type="checkbox"><span>Listas enlazadas y árboles: DFS, BFS, profundidad, aplanar estructuras</span></label></li>
+<li><label><input type="checkbox"><span>Recursión y memoización; búsqueda binaria; ideas de quicksort y mergesort</span></label></li>
+<li><label><input type="checkbox"><span>Big O de tiempo y espacio de lo que escribís</span></label></li>
+</ul>
+<h3>Ejercicios para practicar a mano</h3>
+<table>
+<tr><th>Ejercicio</th><th>Qué evalúa</th></tr>
+<tr><td><code>debounce</code> y <code>throttle</code></td><td>Closures, timers, <code>this</code></td></tr>
+<tr><td><code>Promise.all</code> propio, retry con backoff, límite de concurrencia</td><td>Promesas y control de flujo</td></tr>
+<tr><td><code>memoize</code>, caché LRU</td><td>Closures, <code>Map</code></td></tr>
+<tr><td>Polyfills de <code>map</code>, <code>filter</code>, <code>reduce</code>, <code>bind</code></td><td>Prototipos y <code>this</code></td></tr>
+<tr><td><code>flat</code>, <code>deepClone</code>, <code>deepEqual</code></td><td>Recursión, referencias circulares</td></tr>
+<tr><td><code>groupBy</code>, frecuencias, quitar duplicados</td><td><code>reduce</code>, <code>Map</code></td></tr>
+<tr><td>Two Sum, anagramas, palíndromo, paréntesis balanceados</td><td>Patrones con hash o pila</td></tr>
+<tr><td>Autocompletado con debounce y <code>AbortController</code></td><td>React, efectos, carreras</td></tr>
+<tr><td>Lista con scroll infinito y filtros</td><td><code>IntersectionObserver</code>, paginación (reportado en Mercado Libre)</td></tr>
+<tr><td>Formulario con validación</td><td>Estado controlado, accesibilidad (reportado en Globant)</td></tr>
+<tr><td>Endpoint REST con validación y tests (Node o Spring)</td><td>Diseño de API y buenas prácticas (estilo Ualá)</td></tr>
+</table>
+<p><strong>Dónde practicar:</strong> LeetCode (easy y medium de arrays, hash maps, pilas y árboles), HackerRank, GreatFrontEnd y BFE.dev. Practicá sin autocompletado, hablando en voz alta y con el reloj en 30 a 45 minutos.</p>
+</section>
+
+<section id="node">
+<h2>5. Backend con Node.js</h2>
+<ul class="chk">
+<li><label><input type="checkbox"><span>Event loop de Node y sus fases; por qué no hay que bloquearlo; <code>worker_threads</code>, <code>cluster</code></span></label></li>
+<li><label><input type="checkbox"><span>Express y NestJS: middlewares, módulos, inyección de dependencias, guards, pipes, interceptors, filtros de excepciones</span></label></li>
+<li><label><input type="checkbox"><span>Validación de entrada (DTOs, class-validator o Zod) y manejo centralizado de errores</span></label></li>
+<li><label><input type="checkbox"><span>Streams y buffers; archivos grandes; backpressure</span></label></li>
+<li><label><input type="checkbox"><span>Concurrencia y async: <code>unhandledRejection</code>, timeouts, cancelación, reintentos</span></label></li>
+<li><label><input type="checkbox"><span>ORMs y acceso a datos: Prisma, TypeORM; migraciones; transacciones</span></label></li>
+<li><label><input type="checkbox"><span>Colas y trabajos en segundo plano (BullMQ, RabbitMQ, Kafka a nivel conceptual); idempotencia</span></label></li>
+<li><label><input type="checkbox"><span>Configuración por entorno, secretos, logging estructurado, health checks</span></label></li>
+</ul>
+<details><summary>¿Cómo funciona el event loop de Node y qué lo bloquea?</summary><p>Un solo hilo ejecuta JavaScript y delega I/O al sistema. Lo bloquean cálculos pesados síncronos, <code>JSON.parse</code> de payloads enormes o bucles largos. Se resuelve con workers, streams o sacando ese trabajo a una cola.</p></details>
+<details><summary>¿Cómo organizás un proyecto NestJS?</summary><p>Módulos por dominio, controladores finos, servicios con la lógica, repositorios para datos, DTOs validados y providers inyectados. Los guards manejan autorización y los interceptors el logging o la transformación de respuestas.</p></details>
+<details><summary>¿Cómo evitás procesar dos veces la misma operación?</summary><p>Clave de idempotencia enviada por el cliente, guardada junto al resultado; el segundo intento devuelve el resultado ya calculado.</p></details>
+</section>
+
+<section id="java">
+<h2>6. Java y Spring Boot</h2>
+<p class="lead">Frecuente en bancos, fintech y consultoras. Apuntá a poder defender lo que pongas en tu CV.</p>
+<ul class="chk">
+<li><label><input type="checkbox"><span>Inversión de control, inyección de dependencias, ciclo de vida de un bean, scopes</span></label></li>
+<li><label><input type="checkbox"><span>Anotaciones clave: <code>@RestController</code>, <code>@Service</code>, <code>@Repository</code>, <code>@Transactional</code>, <code>@Configuration</code>, <code>@Valid</code></span></label></li>
+<li><label><input type="checkbox"><span>Autoconfiguración de Spring Boot, perfiles, <code>application.yml</code>, Actuator</span></label></li>
+<li><label><input type="checkbox"><span>JPA e Hibernate: entidades, relaciones, lazy vs eager, problema N+1, transacciones y aislamiento</span></label></li>
+<li><label><input type="checkbox"><span>Spring Security: autenticación, JWT, filtros, roles y permisos</span></label></li>
+<li><label><input type="checkbox"><span>Java: colecciones (<code>HashMap</code>, <code>ArrayList</code>), <code>equals</code>/<code>hashCode</code>, Streams, Optional, concurrencia básica, excepciones checked vs unchecked</span></label></li>
+<li><label><input type="checkbox"><span>Testing: JUnit, Mockito, <code>@SpringBootTest</code>, <code>@WebMvcTest</code>, Testcontainers</span></label></li>
+</ul>
+<details><summary>¿Cómo funciona la inyección de dependencias en Spring?</summary><p>El contenedor crea los beans y los inyecta por constructor (lo recomendado), setter o campo. Esto desacopla las clases y facilita testear con mocks.</p></details>
+<details><summary>¿Qué es el problema N+1 en JPA y cómo se evita?</summary><p>Una consulta trae la lista y luego se dispara una más por cada elemento al acceder a una relación lazy. Se evita con <code>JOIN FETCH</code>, <code>@EntityGraph</code> o consultas con proyecciones.</p></details>
+<details><summary>¿Qué hace @Transactional y qué trampa tiene?</summary><p>Abre una transacción alrededor del método y hace rollback ante excepciones no controladas (por defecto, las unchecked). Trampa: no funciona si se llama a otro método de la misma clase, porque se saltea el proxy.</p></details>
+</section>
+
+<section id="db">
+<h2>7. Bases de datos</h2>
+<ul class="chk">
+<li><label><input type="checkbox"><span>SQL: <code>JOIN</code> (inner, left), <code>GROUP BY</code>, <code>HAVING</code>, subconsultas, funciones de ventana, CTE</span></label></li>
+<li><label><input type="checkbox"><span>Índices: B-tree, índices compuestos, cuándo ayudan y cuándo no; leer un <code>EXPLAIN</code></span></label></li>
+<li><label><input type="checkbox"><span>Transacciones y ACID; niveles de aislamiento; deadlocks; locks optimistas y pesimistas</span></label></li>
+<li><label><input type="checkbox"><span>Modelado: normalización, claves, relaciones 1:N y N:M, cuándo desnormalizar</span></label></li>
+<li><label><input type="checkbox"><span>Migraciones y cambios de esquema sin downtime</span></label></li>
+<li><label><input type="checkbox"><span>SQL vs NoSQL: cuándo usar cada uno; Redis para caché, sesiones y rate limiting; MongoDB a nivel conceptual</span></label></li>
+<li><label><input type="checkbox"><span>Paginación (offset vs cursor), búsqueda de texto, JSONB en PostgreSQL</span></label></li>
+<li><label><input type="checkbox"><span>Réplicas de lectura, pool de conexiones, backups; idea de CAP y consistencia eventual</span></label></li>
+</ul>
+<details><summary>¿Cuándo un índice no ayuda?</summary><p>Con tablas chicas, columnas de baja selectividad, funciones aplicadas sobre la columna en el <code>WHERE</code> o cuando el orden de un índice compuesto no coincide con la consulta. Además, cada índice encarece las escrituras.</p></details>
+<details><summary>¿Qué son los niveles de aislamiento?</summary><p>Definen qué anomalías permite una transacción: lectura sucia, no repetible o fantasma. Read committed es el valor habitual; serializable es el más estricto y el más costoso.</p></details>
+<details><summary>¿Offset o cursor para paginar?</summary><p>Offset es simple pero se vuelve lento y inconsistente en tablas grandes con cambios. El cursor usa la última clave vista y escala mejor.</p></details>
+</section>
+
+<section id="api">
+<h2>8. APIs, autenticación y seguridad</h2>
+<ul class="chk">
+<li><label><input type="checkbox"><span>REST: recursos, verbos, idempotencia, códigos de estado (200, 201, 204, 400, 401, 403, 404, 409, 422, 500), versionado, paginación</span></label></li>
+<li><label><input type="checkbox"><span>GraphQL: queries, mutations, N+1 y DataLoader, ventajas y costos frente a REST</span></label></li>
+<li><label><input type="checkbox"><span>HTTP: headers, caché (<code>Cache-Control</code>, <code>ETag</code>), cookies (<code>HttpOnly</code>, <code>Secure</code>, <code>SameSite</code>), CORS y preflight, WebSockets vs SSE vs polling</span></label></li>
+<li><label><input type="checkbox"><span>Autenticación: sesiones vs JWT, refresh tokens, OAuth2 y OIDC, dónde guardar el token</span></label></li>
+<li><label><input type="checkbox"><span>Autorización: roles, permisos, RBAC vs ABAC</span></label></li>
+<li><label><input type="checkbox"><span>Seguridad web: XSS, CSRF, inyección SQL, CSP, validación de entradas, manejo de secretos, rate limiting, OWASP Top 10</span></label></li>
+<li><label><input type="checkbox"><span>Documentación y contratos: OpenAPI/Swagger</span></label></li>
+</ul>
+<details><summary>¿PUT vs PATCH?</summary><p><code>PUT</code> reemplaza el recurso completo; <code>PATCH</code> lo modifica parcialmente. Ambos deberían ser idempotentes si están bien diseñados.</p></details>
+<details><summary>¿Dónde guardás un JWT en el front?</summary><p>Una cookie <code>HttpOnly</code> reduce el riesgo de XSS; <code>localStorage</code> es accesible por JavaScript y más expuesto. Se mitiga con CSP y tokens de vida corta.</p></details>
+<details><summary>¿Qué es CORS y por qué existe?</summary><p>Es una restricción del navegador sobre pedidos entre orígenes. El servidor decide qué orígenes y headers permite. No protege al servidor, protege al usuario en el navegador.</p></details>
+<details><summary>¿REST o GraphQL?</summary><p>GraphQL evita el over-fetching y reduce viajes, pero complica caché, autorización y monitoreo. REST es simple y cacheable por HTTP.</p></details>
+<details><summary>¿Cómo evitás cobros o transferencias duplicadas?</summary><p>Claves de idempotencia, reintentos seguros y confirmación por el servidor (relevante en fintech y bancos).</p></details>
+</section>
+
+<section id="ops">
+<h2>9. Testing, CI/CD y observabilidad</h2>
+<ul class="chk">
+<li><label><input type="checkbox"><span>Pirámide de testing: unitarios, integración y E2E; qué testear en cada nivel</span></label></li>
+<li><label><input type="checkbox"><span>Testing Library: probar comportamiento visible, no detalles de implementación; mocks de red (MSW)</span></label></li>
+<li><label><input type="checkbox"><span>E2E con Cypress o Playwright: selectores estables, tests inestables (flaky), datos de prueba</span></label></li>
+<li><label><input type="checkbox"><span>Tests de API e integración (Supertest, Testcontainers) y qué dice la cobertura</span></label></li>
+<li><label><input type="checkbox"><span>CI/CD: lint, tests, build, deploy; caché y paralelismo en GitHub Actions; ambientes</span></label></li>
+<li><label><input type="checkbox"><span>Estrategias de despliegue: rolling, blue/green, canary, feature flags, rollback</span></label></li>
+<li><label><input type="checkbox"><span>Docker: imagen vs contenedor, Dockerfile multi-stage, capas, variables y secretos; Docker Compose</span></label></li>
+<li><label><input type="checkbox"><span>Nginx: proxy inverso, estáticos, caché y compresión; nociones de Kubernetes</span></label></li>
+<li><label><input type="checkbox"><span>Observabilidad: logs, métricas y trazas; APM; monitoreo de frontend (errores, Core Web Vitals); SLI y SLO; alertas sin ruido</span></label></li>
+</ul>
+<details><summary>¿Qué testeás con unitarios y qué con E2E?</summary><p>Unitarios para lógica y componentes aislados; E2E para flujos críticos (login, pago). Pocos E2E, bien elegidos.</p></details>
+<details><summary>¿Qué hacés cuando un deploy rompe producción?</summary><p>Mitigar primero (rollback o feature flag), comunicar, y después analizar la causa raíz y agregar un test o alerta.</p></details>
+<details><summary>¿Cómo diseñás un pipeline de CI/CD?</summary><p>Etapas rápidas primero (lint, unitarios), luego build y E2E, con caché, ambientes y un deploy con rollback sencillo.</p></details>
+</section>
+
+<section id="design">
+<h2>10. Arquitectura y system design fullstack</h2>
+<p class="lead">Para Senior es probable una ronda de diseño o preguntas de trade-offs. Usá siempre este marco.</p>
+<ol>
+<li><strong>Requisitos</strong> funcionales y no funcionales (usuarios, latencia, disponibilidad, dispositivos).</li>
+<li><strong>Alcance y supuestos</strong>: qué entra y qué no.</li>
+<li><strong>Arquitectura general</strong>: cliente, API, base de datos, caché, colas.</li>
+<li><strong>Modelo de datos y contratos de API.</strong></li>
+<li><strong>Frontend</strong>: componentes, estado, renderizado, manejo de errores y carga.</li>
+<li><strong>Backend</strong>: servicios, transacciones, idempotencia, trabajos asíncronos.</li>
+<li><strong>Rendimiento y escala</strong>: CDN, caché, índices, paginación, balanceo, rate limiting.</li>
+<li><strong>Seguridad, testing y observabilidad.</strong></li>
+<li><strong>Trade-offs</strong>: nombrá una alternativa descartada y por qué.</li>
+</ol>
+<h3>Temario</h3>
+<ul class="chk">
+<li><label><input type="checkbox"><span>Monolito modular vs microservicios; micro frontends y monorepo; design system</span></label></li>
+<li><label><input type="checkbox"><span>Caché en capas: navegador, CDN, aplicación (Redis), base de datos; invalidación</span></label></li>
+<li><label><input type="checkbox"><span>Colas y eventos; entrega al menos una vez e idempotencia; patrón outbox; sagas a nivel conceptual</span></label></li>
+<li><label><input type="checkbox"><span>Tiempo real: WebSockets, SSE, polling; reconexión y orden de mensajes</span></label></li>
+<li><label><input type="checkbox"><span>Escalado: balanceo de carga, réplicas de lectura, sharding a nivel conceptual, rate limiting</span></label></li>
+<li><label><input type="checkbox"><span>Renderizado: SSR, SSG, ISR, streaming, edge; impacto en SEO y Core Web Vitals</span></label></li>
+<li><label><input type="checkbox"><span>Resiliencia: timeouts, reintentos con backoff, circuit breaker, degradación elegante</span></label></li>
+</ul>
+<h3>Problemas para practicar</h3>
+<table>
+<tr><th>Problema</th><th>Qué cubrir</th></tr>
+<tr><td>Dashboard analítico casi en tiempo real</td><td>Agregaciones en servidor, actualización por SSE o polling, virtualización, rendimiento con muchos puntos</td></tr>
+<tr><td>Feed con scroll infinito y filtros</td><td>Paginación por cursor, caché, cancelación de requests, estados de carga y error</td></tr>
+<tr><td>Flujo de pago o transferencia (fintech)</td><td>Idempotencia, estados del pedido, reintentos, consistencia, seguridad, errores parciales</td></tr>
+<tr><td>Acortador de URLs</td><td>Generación de IDs, base de datos, caché, redirección, métricas</td></tr>
+<tr><td>Chat o notificaciones</td><td>WebSockets, entrega confiable, escalado de conexiones, persistencia</td></tr>
+<tr><td>Carrito y checkout de un e-commerce</td><td>Inventario, concurrencia, transacciones, colas, consistencia</td></tr>
+<tr><td>Migración de una app legacy a Next.js sin frenar el desarrollo</td><td>Estrategia incremental, riesgos, métricas, rollback</td></tr>
+</table>
+<div class="note">Cómo sumar puntos como Senior: preguntá antes de diseñar, expresá los trade-offs en voz alta ("elijo X porque Y, el costo es Z"), pensá en fallas y métricas, y mencioná el impacto en el equipo (mantenibilidad, onboarding).</div>
+</section>
+
+<section id="soft">
+<h2>11. Charla de seniority, comportamental e inglés</h2>
+<p class="lead">La primera etapa suele ser una charla con RR. HH. sobre tu perfil y experiencia; la final, con un líder o el cliente.</p>
+<p><strong>Formato STAR:</strong> Situación, Tarea, Acción (qué hiciste vos), Resultado (con números). Preparate entre 5 y 6 historias y reutilizalas.</p>
+<ul class="chk">
+<li><label><input type="checkbox"><span>Historia de liderazgo de un desarrollo end-to-end (decisiones de arquitectura, coordinación front y back, resultado)</span></label></li>
+<li><label><input type="checkbox"><span>Historia de mejora de performance o calidad con métrica antes y después</span></label></li>
+<li><label><input type="checkbox"><span>Historia de mentoría o liderazgo técnico</span></label></li>
+<li><label><input type="checkbox"><span>Un error o decisión que salió mal, y qué aprendiste</span></label></li>
+<li><label><input type="checkbox"><span>Un desacuerdo técnico resuelto con datos y respeto</span></label></li>
+<li><label><input type="checkbox"><span>Un incidente en producción: cómo lo detectaste, mitigaste y evitaste que se repitiera</span></label></li>
+<li><label><input type="checkbox"><span>Pitch de 90 segundos: "contame sobre vos", terminando con por qué esta empresa</span></label></li>
+<li><label><input type="checkbox"><span>Respuestas para: por qué querés cambiar, qué te diferencia de un Semi Senior, cómo hacés code review, cómo manejás plazos ajustados</span></label></li>
+<li><label><input type="checkbox"><span>Pretensión salarial: rango definido de antemano</span></label></li>
+<li><label><input type="checkbox"><span>Tres preguntas para ellos: equipo, cómo miden calidad, qué esperan en los primeros 90 días</span></label></li>
+<li><label><input type="checkbox"><span>Inglés: pitch, dos historias STAR y explicar tu stack, practicados en voz alta (varias reseñas de Globant mencionan una parte en inglés de 15 minutos o más)</span></label></li>
+</ul>
+</section>
+
+<section id="plan">
+<h2>12. Plan de estudio de 4 semanas</h2>
+<p class="lead">Asume 1,5 a 2 horas por día, 6 días por semana. Si tenés una entrevista cercana, priorizá semanas 1 y 2, después la charla y al final system design.</p>
+<h3>Semana 1: JavaScript, TypeScript y bases de Node</h3>
+<ul class="chk">
+<li><label><input type="checkbox"><span>Día 1: event loop, microtareas y macrotareas; 10 ejercicios de "qué imprime"</span></label></li>
+<li><label><input type="checkbox"><span>Día 2: closures, scope, hoisting; implementar <code>memoize</code></span></label></li>
+<li><label><input type="checkbox"><span>Día 3: <code>this</code>, prototipos; polyfills de <code>bind</code>, <code>map</code>, <code>reduce</code></span></label></li>
+<li><label><input type="checkbox"><span>Día 4: Promises y async/await; <code>Promise.all</code> propio y retry con backoff</span></label></li>
+<li><label><input type="checkbox"><span>Día 5: TypeScript (generics, utility types, narrowing); <code>DeepPartial</code>, <code>groupBy</code></span></label></li>
+<li><label><input type="checkbox"><span>Día 6: simulacro de 45 minutos de preguntas de JS en voz alta</span></label></li>
+</ul>
+<h3>Semana 2: React, Next.js y componentes en vivo</h3>
+<ul class="chk">
+<li><label><input type="checkbox"><span>Día 1: render, reconciliación, <code>key</code>, hooks y sus reglas</span></label></li>
+<li><label><input type="checkbox"><span>Día 2: <code>useEffect</code> a fondo; autocompletado con debounce y <code>AbortController</code></span></label></li>
+<li><label><input type="checkbox"><span>Día 3: performance y estado (Context, Redux Toolkit, React Query)</span></label></li>
+<li><label><input type="checkbox"><span>Día 4: Next.js (SSR, SSG, ISR, Server y Client Components, caché)</span></label></li>
+<li><label><input type="checkbox"><span>Día 5: en 45 minutos, lista con scroll infinito y filtros, y formulario con validación</span></label></li>
+<li><label><input type="checkbox"><span>Día 6: simulacro de live coding de React de 45 minutos</span></label></li>
+</ul>
+<h3>Semana 3: Backend, bases de datos y algoritmos</h3>
+<ul class="chk">
+<li><label><input type="checkbox"><span>Día 1: API REST en Node/NestJS con validación, errores y tests</span></label></li>
+<li><label><input type="checkbox"><span>Día 2: SQL (joins, índices, transacciones, aislamiento) y modelado de datos</span></label></li>
+<li><label><input type="checkbox"><span>Día 3: autenticación (JWT, sesiones, OAuth), seguridad web y CORS</span></label></li>
+<li><label><input type="checkbox"><span>Día 4: Java y Spring Boot (DI, JPA, N+1, transacciones, Security)</span></label></li>
+<li><label><input type="checkbox"><span>Día 5: arrays, hash maps, pilas, árboles y recursión; Big O; LRU</span></label></li>
+<li><label><input type="checkbox"><span>Día 6: testing, CI/CD, Docker y observabilidad; simulacro de algoritmos de 45 minutos</span></label></li>
+</ul>
+<h3>Semana 4: System design, charla y simulacros</h3>
+<ul class="chk">
+<li><label><input type="checkbox"><span>Día 1: marco de system design; resolver en papel el dashboard analítico</span></label></li>
+<li><label><input type="checkbox"><span>Día 2: flujo de pago y checkout; idempotencia, colas y consistencia</span></label></li>
+<li><label><input type="checkbox"><span>Día 3: escribir las historias STAR con números y el pitch de 90 segundos</span></label></li>
+<li><label><input type="checkbox"><span>Día 4: inglés, grabarte con el pitch y dos historias</span></label></li>
+<li><label><input type="checkbox"><span>Día 5: simulacro completo: charla de 20 minutos, live coding de 45 y diseño de 20</span></label></li>
+<li><label><input type="checkbox"><span>Día 6: repaso de puntos flojos y preparación por empresa (producto, stack, preguntas para ellos)</span></label></li>
+</ul>
+<p><strong>Cada día:</strong> 10 minutos finales para anotar lo que no pudiste responder. Esa lista es lo que repasás el día antes de la entrevista.</p>
+</section>
+
+<section id="fuentes">
+<h2>13. Fuentes y nivel de confianza</h2>
+<p>La información de la sección 1 sale de resultados de búsqueda de reseñas anónimas de candidatos, consultados el 16/11/2026. No se abrió cada reseña completa, así que tomala como orientación y no como proceso oficial. Los temarios técnicos y el plan son conocimiento general de la industria, no extraídos de esas reseñas.</p>
+<ul>
+<li><a href="https://www.techprep.app/blog/mercadolibre-interview-process">Mercado Libre: guía de proceso de entrevista</a></li>
+<li><a href="https://www.glassdoor.ca/Interview/Mercado-Libre-Interview-E6563240-RVW100819985.htm">Mercado Libre: reseña de Buenos Aires, mayo 2025</a></li>
+<li><a href="https://www.glassdoor.com/Interview/Mercado-Libre-Interview-E6563240-RVW92871301.htm">Mercado Libre: reseña de Buenos Aires, septiembre 2024</a></li>
+<li><a href="https://www.glassdoor.ca/Interview/Globant-Interview-E150678-RVW49335366.htm">Globant: reseñas de entrevistas</a></li>
+<li><a href="https://www.glassdoor.com/Interview/Naranja-X-Interview-E3079608-RVW82628167.htm">Naranja X: reseñas de entrevistas</a></li>
+<li><a href="https://www.glassdoor.ca/Interview/Ual%C3%A1-Interview-E2801509-RVW58758894.htm">Ualá: reseña de entrevista</a></li>
+<li><a href="https://www.glassdoor.ie/Interview/Santander-Interview-E828048-RVW61498189.htm">Santander: reseñas de entrevistas</a></li>
+<li><a href="https://www.aceround.app/es-419/blog/frontend-developer-interview-ai/">Entrevista técnica frontend en 2026</a></li>
+</ul>
+<p>Sin información encontrada: Brubank, Despegar, Auth0 y Banco Galicia.</p>
+</section>
+
+<footer>Temario sin afiliación con ninguna de las empresas mencionadas. Actualizado el 16/11/2026.</footer>
+</div>
+<script>
+(function(){
+  var KEY='temario-fullstack-v1';
+  var boxes=[].slice.call(document.querySelectorAll('ul.chk input[type=checkbox]'));
+  var state={};
+  try{state=JSON.parse(localStorage.getItem(KEY)||'{}')}catch(e){}
+  function paint(){
+    var done=boxes.filter(function(b){return b.checked}).length;
+    var pct=boxes.length?Math.round(done/boxes.length*100):0;
+    document.getElementById('ptxt').textContent=done+' de '+boxes.length+' ('+pct+'%)';
+    document.getElementById('pbar').style.width=pct+'%';
+  }
+  function save(){
+    var s={};boxes.forEach(function(b,i){if(b.checked)s[i]=1});
+    try{localStorage.setItem(KEY,JSON.stringify(s))}catch(e){}
+  }
+  boxes.forEach(function(b,i){
+    if(state[i])b.checked=true;
+    b.addEventListener('change',function(){save();paint()});
+  });
+  document.getElementById('reset').addEventListener('click',function(){
+    if(!confirm('¿Borrar todo el avance?'))return;
+    boxes.forEach(function(b){b.checked=false});save();paint();
+  });
+  paint();
+})();
+</script>
+</body>
+</html>
