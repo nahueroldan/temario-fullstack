@@ -2,7 +2,9 @@
 <html lang="es">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#fafaf7" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#141413" media="(prefers-color-scheme: dark)">
 <title>Temario Fullstack para entrevistas técnicas</title>
 <meta name="description" content="Temario fullstack (JavaScript, React, Node, Java/Spring, bases de datos, system design) para entrevistas técnicas en empresas de Argentina, con checklist y plan de 4 semanas.">
 <style>
@@ -40,13 +42,53 @@ a{color:var(--acc)}
 .note{background:var(--accbg);border-radius:8px;padding:10px 14px;margin:12px 0;font-size:15px}
 footer{margin-top:48px;color:var(--mut);font-size:13px;border-top:1px solid var(--line);padding-top:16px}
 button{font:inherit;background:none;border:1px solid var(--line);color:var(--mut);border-radius:6px;padding:2px 10px;cursor:pointer}
+:root{--onacc:#fff;--err:#b3261e}
+@media (prefers-color-scheme:dark){:root{--onacc:#0d1220;--err:#ff8a80}}
+html{-webkit-text-size-adjust:100%}
+[hidden]{display:none!important}
+section{scroll-margin-top:var(--navh,48px)}
+button,label,summary,a{touch-action:manipulation}
+button{min-height:44px;padding:8px 14px}
+button:focus-visible,summary:focus-visible,input:focus-visible,a:focus-visible{outline:2px solid var(--acc);outline-offset:2px}
+.primary{background:var(--acc);color:var(--onacc);border-color:var(--acc);font-weight:600}
+.fab{position:fixed;right:16px;bottom:calc(16px + env(safe-area-inset-bottom));z-index:20;border-radius:999px;padding:10px 20px;min-height:48px;box-shadow:0 4px 14px rgba(0,0,0,.28)}
+.ov{position:fixed;inset:0;background:var(--bg);z-index:30;overflow:auto;padding:max(16px,env(safe-area-inset-top)) 16px calc(24px + env(safe-area-inset-bottom))}
+.pvbox{max-width:640px;margin:0 auto}
+.pvtop{display:flex;justify-content:space-between;align-items:center;gap:10px}
+.pvsec{color:var(--mut);font-size:14px;margin-top:12px}
+#pvq{font-size:21px;line-height:1.3;margin:6px 0 4px}
+.row{display:flex;flex-wrap:wrap;gap:8px;margin:12px 0}
+.row button{flex:1 1 140px}
+.tr{min-height:84px;border:1px dashed var(--line);border-radius:8px;padding:10px 12px;margin:10px 0;white-space:pre-wrap}
+.tr.err{color:var(--err)}
+button[aria-pressed=true]{background:var(--err);border-color:var(--err);color:#fff}
+.ans{background:var(--card);border:1px solid var(--line);border-radius:8px;padding:4px 14px 10px;margin:12px 0}
+.hint{font-size:14.5px;color:var(--mut)}
+.small{font-size:13px;color:var(--mut)}
+@media (max-width:640px){
+ body{font-size:17px}
+ .wrap{padding:0 14px 96px}
+ header{padding-top:24px}
+ h2{font-size:22px}
+ nav a{padding:12px 4px;margin-right:10px}
+ .prog{position:static}
+ ul.chk label{padding:10px 0}
+ ul.chk input{width:22px;height:22px;flex:none;margin-top:3px}
+ summary{padding:14px 0}
+ table,tbody{display:block;overflow:visible}
+ tr{display:block;border:1px solid var(--line);border-radius:8px;margin:10px 0;padding:6px 12px;background:var(--card)}
+ tr.hr{display:none}
+ td{display:block;border:0;padding:6px 0}
+ td[data-label]::before{content:attr(data-label);display:block;font-size:12px;font-weight:600;color:var(--mut);text-transform:uppercase;letter-spacing:.03em}
+ .fab{left:16px;right:16px;text-align:center}
+}
 </style>
 </head>
 <body>
 <div class="wrap">
 <header>
 <h1>Temario Fullstack para entrevistas técnicas</h1>
-<p>Qué estudiar para entrevistas de desarrollo fullstack (frontend con backend) en empresas de Argentina: live coding, charla técnica, system design y charla de seniority. Tildá lo que ya dominás; el avance queda guardado en tu navegador.</p>
+<p>Qué estudiar para entrevistas de desarrollo fullstack (frontend con backend) en empresas de Argentina: live coding, charla técnica, system design y charla de seniority. Tildá lo que ya dominás; el avance queda guardado en tu navegador. Con el botón "Practicar con voz" podés responder las preguntas hablando, desde el celular o la compu.</p>
 </header>
 <nav>
 <a href="#empresas">Empresas</a><a href="#js">JS/TS</a><a href="#react">React/Next</a><a href="#live">Live coding</a><a href="#node">Node</a><a href="#java">Java/Spring</a><a href="#db">Bases de datos</a><a href="#api">APIs y seguridad</a><a href="#ops">Testing y CI/CD</a><a href="#design">System design</a><a href="#soft">Charla</a><a href="#plan">Plan 4 semanas</a><a href="#fuentes">Fuentes</a>
@@ -391,6 +433,210 @@ button{font:inherit;background:none;border:1px solid var(--line);color:var(--mut
     boxes.forEach(function(b){b.checked=false});save();paint();
   });
   paint();
+})();
+</script>
+
+<button id="pbtn" class="fab primary" type="button">Practicar con voz</button>
+<div id="pv" class="ov" role="dialog" aria-modal="true" aria-labelledby="pvt" hidden>
+<div class="pvbox">
+  <div class="pvtop"><strong id="pvt">Practicar con voz</strong><button id="pvx" type="button">Cerrar</button></div>
+  <div class="pvsec" id="pvs"></div>
+  <h3 id="pvq"></h3>
+  <div class="row">
+    <button id="pvlq" type="button">Escuchar pregunta</button>
+    <button id="pvmic" class="primary" type="button" aria-pressed="false">Responder con voz</button>
+  </div>
+  <div id="pvtr" class="tr" aria-live="polite">Tu respuesta aparece acá mientras hablás.</div>
+  <button id="pvshow" type="button" style="width:100%">Ver respuesta de referencia</button>
+  <div id="pvans" class="ans" hidden>
+    <p id="pvat"></p>
+    <p id="pvhint" class="hint"></p>
+    <div class="row"><button id="pvla" type="button">Escuchar respuesta</button></div>
+    <div class="row">
+      <button id="pvok" class="primary" type="button">Lo sabía</button>
+      <button id="pvrev" type="button">Repasar</button>
+    </div>
+  </div>
+  <div class="row">
+    <button id="pvprev" type="button">Anterior</button>
+    <button id="pvnext" type="button">Siguiente</button>
+    <button id="pvrand" type="button">Al azar</button>
+  </div>
+  <label class="small"><input type="checkbox" id="pvonly"> Saltar las que marqué "Lo sabía"</label>
+  <p class="small" id="pvnote"></p>
+  <p class="small">El reconocimiento de voz lo hace tu navegador y, según cuál uses, el audio puede procesarse en servidores del fabricante (Chrome y Edge lo hacen). Este sitio no guarda ni envía tu audio ni tus respuestas. La comparación con la respuesta de referencia es aproximada: es una ayuda para autoevaluarte, no una corrección.</p>
+</div>
+</div>
+
+<script>
+(function(){
+  var SR=window.SpeechRecognition||window.webkitSpeechRecognition;
+  var synth=window.speechSynthesis;
+  var $=function(id){return document.getElementById(id)};
+  var VKEY='temario-fullstack-voice-v1';
+  var rating={};
+  try{rating=JSON.parse(localStorage.getItem(VKEY)||'{}')}catch(e){}
+  function saveRating(){try{localStorage.setItem(VKEY,JSON.stringify(rating))}catch(e){}}
+
+  /* Tablas: etiquetas para el diseño en tarjetas en pantallas chicas */
+  [].forEach.call(document.querySelectorAll('table'),function(t){
+    var heads=[];
+    [].forEach.call(t.rows,function(r){
+      if(r.querySelector('th')){
+        r.classList.add('hr');
+        heads=[].map.call(r.cells,function(c){return c.textContent.trim()});
+      }else{
+        [].forEach.call(r.cells,function(c,i){
+          if(c.colSpan<=1&&heads[i])c.setAttribute('data-label',heads[i]);
+        });
+      }
+    });
+  });
+  function setNavH(){var n=document.querySelector('nav');if(n)document.documentElement.style.setProperty('--navh',n.offsetHeight+4+'px')}
+  setNavH();window.addEventListener('resize',setNavH);
+
+  /* Mazo de preguntas: cada <details> es una pregunta con su respuesta */
+  var items=[].slice.call(document.querySelectorAll('details')).map(function(d){
+    var sec=d.closest('section'),h=sec&&sec.querySelector('h2');
+    return{q:d.querySelector('summary').textContent.trim(),a:d.querySelector('p').textContent.trim(),sec:h?h.textContent:''};
+  });
+
+  /* Voz */
+  var active=null;
+  function stopActive(){if(active){try{active.stop()}catch(e){}active=null}}
+  function speak(text){
+    if(!synth)return;
+    synth.cancel();
+    var u=new SpeechSynthesisUtterance(text);u.lang='es-AR';
+    var vs=synth.getVoices().filter(function(v){return /^es/i.test(v.lang)});
+    var pick=vs.filter(function(v){return /AR|MX|419|US/i.test(v.lang)})[0]||vs[0];
+    if(pick)u.voice=pick;
+    synth.speak(u);
+  }
+  var MSG={
+    'not-allowed':'Permiso de micrófono denegado. Habilitalo en los ajustes del navegador para este sitio.',
+    'service-not-allowed':'El navegador no permite el reconocimiento de voz en este momento.',
+    'no-speech':'No escuché nada. Probá de nuevo.',
+    'network':'El reconocimiento de voz necesita conexión a internet.',
+    'audio-capture':'No encuentro un micrófono.',
+    'unsupported':'Tu navegador no soporta reconocimiento de voz. Probá con Chrome, Edge o Safari.'
+  };
+  function startMic(o){
+    if(!SR){o.onError('unsupported');return null}
+    stopActive();if(synth)synth.cancel();
+    var r=new SR(),finalT='';
+    r.lang='es-AR';r.interimResults=true;r.continuous=true;
+    r.onresult=function(e){
+      var f='',i2='';
+      for(var i=0;i<e.results.length;i++){
+        var t=e.results[i][0].transcript;
+        if(e.results[i].isFinal)f+=t+' ';else i2+=t;
+      }
+      finalT=(f+i2).trim();
+      o.onText(finalT);
+    };
+    r.onerror=function(e){if(e.error!=='aborted')o.onError(e.error)};
+    r.onend=function(){if(active===r)active=null;o.onEnd(finalT)};
+    active=r;
+    try{r.start()}catch(e){active=null;o.onError('start');return null}
+    return r;
+  }
+
+  /* Comparación aproximada de conceptos */
+  var STOP='para,como,cuando,donde,desde,hasta,entre,sobre,tiene,tienen,puede,pueden,cada,solo,pero,porque,esto,esta,este,estos,estas,otro,otra,mismo,misma,hace,hacen,sino,ante,tambien,luego,despues,antes,algo,cuenta,primero,final,valor,valores,usar,usando'.split(',');
+  function norm(s){return s.toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g,'')}
+  function coverage(answer,spoken){
+    var seen={},kw=[];
+    norm(answer).split(/[^a-z0-9]+/).forEach(function(w){if(w.length>=5&&STOP.indexOf(w)<0&&!seen[w]){seen[w]=1;kw.push(w)}});
+    var words=norm(spoken).split(/[^a-z0-9]+/).filter(Boolean);
+    var hit=[],miss=[];
+    kw.forEach(function(w){
+      var stem=w.slice(0,Math.max(5,w.length-2));
+      (words.some(function(s){return s.indexOf(stem)===0})?hit:miss).push(w);
+    });
+    return{hit:hit,miss:miss,total:kw.length};
+  }
+
+  /* Modo práctica */
+  var ov=$('pv'),cur=0,lastT='',micBtn=$('pvmic'),tr=$('pvtr');
+  function known(){return items.filter(function(x){return rating[x.q]==='ok'}).length}
+  function pool(){
+    var only=$('pvonly').checked,p=[];
+    items.forEach(function(x,i){if(!only||rating[x.q]!=='ok')p.push(i)});
+    return p;
+  }
+  function show(i){
+    cur=i;stopActive();if(synth)synth.cancel();
+    var it=items[i];lastT='';
+    $('pvs').textContent=it.sec+' · pregunta '+(i+1)+' de '+items.length+' · sabidas: '+known();
+    $('pvq').textContent=it.q;
+    $('pvat').textContent=it.a;
+    $('pvans').hidden=true;$('pvhint').textContent='';
+    $('pvshow').hidden=false;
+    tr.textContent='Tu respuesta aparece acá mientras hablás.';tr.classList.remove('err');
+    micBtn.textContent='Responder con voz';micBtn.setAttribute('aria-pressed','false');
+  }
+  function step(dir){
+    var p=pool();
+    if(!p.length){
+      $('pvnote').textContent='Marcaste todas como sabidas. Desmarcá el filtro para repasarlas.';
+      return;
+    }
+    $('pvnote').textContent='';
+    var n=items.length;
+    for(var k=1;k<=n;k++){
+      var j=((cur+dir*k)%n+n)%n;
+      if(p.indexOf(j)>-1){show(j);return}
+    }
+    show(cur);
+  }
+  function openPv(){
+    ov.hidden=false;document.body.style.overflow='hidden';
+    show(cur);$('pvx').focus();
+    $('pvnote').textContent=SR?'':MSG.unsupported+' Igual podés escuchar las preguntas y ver las respuestas.';
+    micBtn.disabled=!SR;
+    $('pvlq').disabled=!synth;$('pvla').disabled=!synth;
+  }
+  function closePv(){
+    stopActive();if(synth)synth.cancel();
+    ov.hidden=true;document.body.style.overflow='';$('pbtn').focus();
+  }
+  $('pbtn').addEventListener('click',openPv);
+  $('pvx').addEventListener('click',closePv);
+  document.addEventListener('keydown',function(e){if(e.key==='Escape'&&!ov.hidden)closePv()});
+  $('pvlq').addEventListener('click',function(){speak(items[cur].q)});
+  $('pvla').addEventListener('click',function(){speak(items[cur].a)});
+  micBtn.addEventListener('click',function(){
+    if(active){stopActive();return}
+    tr.classList.remove('err');tr.textContent='Escuchando…';
+    var r=startMic({
+      onText:function(t){lastT=t;tr.textContent=t||'Escuchando…'},
+      onError:function(c){tr.textContent=MSG[c]||('No se pudo usar el micrófono ('+c+').');tr.classList.add('err')},
+      onEnd:function(t){lastT=t||lastT;micBtn.textContent='Responder con voz';micBtn.setAttribute('aria-pressed','false')}
+    });
+    if(r){micBtn.textContent='Detener';micBtn.setAttribute('aria-pressed','true')}
+  });
+  $('pvshow').addEventListener('click',function(){
+    stopActive();
+    $('pvans').hidden=false;$('pvshow').hidden=true;
+    if(lastT){
+      var c=coverage(items[cur].a,lastT);
+      $('pvhint').textContent='Mencionaste '+c.hit.length+' de '+c.total+' conceptos clave de la respuesta de referencia (aproximado).'+(c.miss.length?' Te faltaron: '+c.miss.join(', ')+'.':'');
+    }else{
+      $('pvhint').textContent='Compará con lo que habrías dicho y marcá cómo te fue.';
+    }
+    $('pvans').scrollIntoView({block:'nearest'});
+  });
+  function rate(v){rating[items[cur].q]=v;saveRating();step(1)}
+  $('pvok').addEventListener('click',function(){rate('ok')});
+  $('pvrev').addEventListener('click',function(){rate('review')});
+  $('pvprev').addEventListener('click',function(){step(-1)});
+  $('pvnext').addEventListener('click',function(){step(1)});
+  $('pvrand').addEventListener('click',function(){
+    var p=pool().filter(function(i){return i!==cur});
+    if(p.length)show(p[Math.floor(Math.random()*p.length)]);
+  });
+  $('pvonly').addEventListener('change',function(){$('pvnote').textContent=''});
 })();
 </script>
 </body>
